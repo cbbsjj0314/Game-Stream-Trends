@@ -1,0 +1,38 @@
+name: Python Lint
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.8"
+
+      - name: Install dependencies
+        run: |
+          pip install .[dev]
+
+      - name: Run Black
+        run: black --config pyproject.toml .
+
+      - name: Run Flake8
+        run: flake8 --config pyproject.toml .
+
+      - name: Run isort
+        run: isort . --settings-path pyproject.toml
