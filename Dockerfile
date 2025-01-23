@@ -10,7 +10,9 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
 COPY setup.cfg /usr/local/airflow/setup.cfg
 COPY pyproject.toml /usr/local/airflow/pyproject.toml
 
-WORKDIR /usr/local/airflow
-RUN pip install -e ".[dev]"
+RUN chown -R airflow /usr/local/airflow
 
 USER airflow
+
+WORKDIR /usr/local/airflow
+RUN pip install -e ".[dev]"
