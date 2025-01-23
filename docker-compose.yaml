@@ -2,6 +2,9 @@
 x-airflow-common:
   &airflow-common
   image: apache/airflow:2.10.4
+  build:
+    context: .
+    dockerfile: Dockerfile
   environment:
     &airflow-common-env
     DB_BACKEND: postgres
