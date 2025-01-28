@@ -19,6 +19,7 @@ x-airflow-common:
 
   volumes:
     - ./dags:/usr/local/airflow/dags
+    - ./scripts:/usr/local/airflow/scripts
     - ./logs:/usr/local/airflow/logs
     - ./plugins:/usr/local/airflow/plugins
     - ./config:/usr/local/airflow/config
