@@ -1,60 +1,66 @@
 x-minio-common: &minio-common
   image: quay.io/minio/minio:RELEASE.2025-01-20T14-49-07Z
-  command: server --console-address ":9001" http://minio{1...4}/data{1...2}
+  command: server --console-address ":${CONTAINER_CONSOLE_PORT}" ${MINIO_NODES}
   expose:
-    - "9000"
-    - "9001"
+    - "${CONTAINER_API_PORT}"
+    - "${CONTAINER_CONSOLE_PORT}"
   environment:
-    MINIO_ROOT_USER: minioadmin
-    MINIO_ROOT_PASSWORD: minioadmin
+    MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
   healthcheck:
     test: ["CMD", "mc", "ready", "local"]
     interval: 5s
     timeout: 5s
     retries: 5
+  env_file:
+    - .env
 
 services:
   minio1:
     <<: *minio-common
     hostname: minio1
     volumes:
-      - D:/storage/game-stream-trends/minio1/data1:/data1
-      - D:/storage/game-stream-trends/minio1/data2:/data2
+      - ${MINIO1_DATA1_PATH}:/data1
+      - ${MINIO1_DATA2_PATH}:/data2
 
   minio2:
     <<: *minio-common
     hostname: minio2
     volumes:
-      - D:/storage/game-stream-trends/minio2/data1:/data1
-      - D:/storage/game-stream-trends/minio2/data2:/data2
+      - ${MINIO2_DATA1_PATH}:/data1
+      - ${MINIO2_DATA2_PATH}:/data2
 
   minio3:
     <<: *minio-common
     hostname: minio3
     volumes:
-      - D:/storage/game-stream-trends/minio3/data1:/data1
-      - D:/storage/game-stream-trends/minio3/data2:/data2
+      - ${MINIO3_DATA1_PATH}:/data1
+      - ${MINIO3_DATA2_PATH}:/data2
 
   minio4:
     <<: *minio-common
     hostname: minio4
     volumes:
-      - D:/storage/game-stream-trends/minio4/data1:/data1
-      - D:/storage/game-stream-trends/minio4/data2:/data2
+      - ${MINIO4_DATA1_PATH}:/data1
+      - ${MINIO4_DATA2_PATH}:/data2
 
   nginx:
     image: nginx:1.19.2-alpine
     hostname: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf.template:/etc/nginx/nginx.conf.template:ro
+    # command: ["/bin/sh"]
+    command: /bin/sh -c "envsubst < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "${MINIO_API_PORT}:${CONTAINER_API_PORT}"
+      - "${MINIO_CONSOLE_PORT}:${CONTAINER_CONSOLE_PORT}"
     depends_on:
       - minio1
       - minio2
       - minio3
       - minio4
+    env_file:
+      - .env
 
 volumes:
   data1-1:
