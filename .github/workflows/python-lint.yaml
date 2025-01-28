@@ -24,15 +24,19 @@ jobs:
         with:
           python-version: "3.11.8"
 
-      - name: Install dependencies
+      - name: Install Poetry
         run: |
-          pip install .[dev]
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+
+      - name: Install dependencies with Poetry
+        run: poetry install --with dev
 
       - name: Run Black
-        run: black --config pyproject.toml .
+        run: poetry run black --config pyproject.toml .
 
       - name: Run Flake8
-        run: flake8 --config pyproject.toml .
+        run: poetry run flake8 --config pyproject.toml .
 
       - name: Run isort
-        run: isort . --settings-path pyproject.toml
+        run: poetry run isort . --settings-path pyproject.toml
