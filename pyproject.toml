@@ -6,6 +6,9 @@ build-backend = "setuptools.build_meta"
 name = "Game-Stream-Trends"
 version = "0.1.0"
 description = "Combine game data and streaming platform data to track the latest trends in gaming and streaming."
+packages = [
+    { include = "test-scripts", from = "dev/minio" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
