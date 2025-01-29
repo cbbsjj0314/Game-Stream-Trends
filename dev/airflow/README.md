@@ -1,6 +1,6 @@
 # Apache Airflow 로컬 개발 환경 설정
 
-이 문서는 Docker 및 docker-compose를 사용하여 로컬 환경에서 Apache Airflow를 설정하는 방법을 설명합니다.
+이 문서는 Docker를 사용하여 Apache Airflow를 로컬 환경에서 설정하는 방법을 설명합니다.
 
 ## 구성 파일 및 설명
 
