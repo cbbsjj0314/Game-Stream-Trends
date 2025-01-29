@@ -20,7 +20,7 @@ logging.basicConfig(
 MINIO_ENDPOINT = f"http://{MINIO_SERVER_IP}:{MINIO_API_PORT}"
 MINIO_ACCESS_KEY = MINIO_ACCESS_KEY
 MINIO_SECRET_KEY = MINIO_SECRET_KEY
-BUCKET_NAME = "test-bucket"
+BUCKET_NAME = "host-test-bucket"
 
 TEST_DATA = {"message": "Hello, MinIO!"}
 TEST_FILE_NAME = "test_data.json"
