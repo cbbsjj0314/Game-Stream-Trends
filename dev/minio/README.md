@@ -67,7 +67,7 @@ docker ps
     - `.env`의 `MINIO_CONSOLE_PORT`로 `http://localhost:${MINIO_CONSOLE_PORT}` 접속
     - `.env`의 `MINIO_ROOT_USER`와 `MINIO_ROOT_PASSWORD`로 로그인
 2. **클라이언트 머신**
-    - `.env`의 `MINIO_SERVER_IP`와 'MINIO_CONSOLE_PORT'로 `http://${MINIO_SERVER_IP}:${MINIO_CONSOLE_PORT}` 접속
+    - `.env`의 `MINIO_SERVER_IP`와 `MINIO_CONSOLE_PORT`로 `http://${MINIO_SERVER_IP}:${MINIO_CONSOLE_PORT}` 접속
     - `.env`의 `MINIO_ROOT_USER`와 `MINIO_ROOT_PASSWORD`로 로그인
 
 ### 2️⃣ 테스트 스크립트 실행
