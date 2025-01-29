@@ -13,8 +13,14 @@ cd Game-Stream-Trends
 
 ## 2️⃣ Poetry 설치 (한 번만 실행)
 Poetry가 설치되지 않았다면 아래 명령어로 설치
+#### ▶ Mac
 ```sh
 curl -sSL https://install.python-poetry.org | python3 -
+```
+
+#### ▶ Window
+```sh
+curl.exe -sSL https://install.python-poetry.org | python -
 ```
 
 ## 3️⃣ 가상 환경 생성 및 의존성 설치
@@ -24,13 +30,13 @@ poetry install --with dev
 ```
 
 ## 4️⃣ Airflow 및 MinIO 실행
-### ▶️ Airflow 실행
+#### ▶ Airflow 실행
 ```sh
 cd dev/airflow
 docker compose up --build -d
 ```
 
-### ▶️ MinIO 실행
+#### ▶ MinIO 실행
 ```sh
 cd dev/minio
 docker compose up --bulid -d
