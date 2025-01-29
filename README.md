@@ -1,4 +1,6 @@
 ![Python](https://img.shields.io/badge/Python-3.11.8-blue?logo=python&logoColor=white)
+![Apache Airflow](https://img.shields.io/badge/apache--airflow-2.10.4-orange?logo=apache-airflow)
+![MinIO](https://img.shields.io/badge/minio-7.2.15-purple?logo=minio)
 
 # Game-Stream-Trends 프로젝트 설정 가이드
 
