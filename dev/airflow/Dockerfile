@@ -4,15 +4,20 @@ USER root
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
     build-essential \
+    libpq-dev \
     git \
+    gcc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY setup.cfg /usr/local/airflow/setup.cfg
 COPY pyproject.toml /usr/local/airflow/pyproject.toml
+COPY poetry.lock /usr/local/airflow/poetry.lock
 
 RUN chown -R airflow /usr/local/airflow
 
 USER airflow
 
 WORKDIR /usr/local/airflow
-RUN pip install -e ".[dev]"
+
+RUN pip install --no-cache-dir poetry && \
+    poetry config virtualenvs.create false && \
+    poetry install --no-root --with dev
