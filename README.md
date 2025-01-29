@@ -54,4 +54,3 @@ docker compose up --build -d
 cd dev/minio
 docker compose up --bulid -d
 ```
-
