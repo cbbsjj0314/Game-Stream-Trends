@@ -14,9 +14,7 @@ MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY")
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.StreamHandler()
-    ]
+    handlers=[logging.StreamHandler()],
 )
 
 MINIO_ENDPOINT = f"http://{MINIO_SERVER_IP}:{MINIO_API_PORT}"
@@ -27,6 +25,7 @@ BUCKET_NAME = "test-bucket"
 TEST_DATA = {"message": "Hello, MinIO!"}
 TEST_FILE_NAME = "test_data.json"
 
+
 def create_minio_client():
     try:
         logging.debug("Creating MinIO client.")
@@ -34,13 +33,14 @@ def create_minio_client():
             MINIO_ENDPOINT.replace("http://", ""),
             access_key=MINIO_ACCESS_KEY,
             secret_key=MINIO_SECRET_KEY,
-            secure=False
+            secure=False,
         )
         logging.info("MinIO client created successfully.")
         return client
     except Exception as e:
         logging.error(f"Error creating MinIO client: {e}")
         raise
+
 
 def ensure_bucket(client, bucket_name):
     try:
@@ -54,16 +54,19 @@ def ensure_bucket(client, bucket_name):
         logging.error(f"Error ensuring bucket: {e}")
         raise
 
+
 def save_test_data_to_file(data, file_name):
     try:
         logging.debug(f"Saving test data to file '{file_name}'.")
         with open(file_name, "w") as file:
             import json
+
             json.dump(data, file)
         logging.info(f"Test data saved to '{file_name}'.")
     except Exception as e:
         logging.error(f"Error saving test data: {e}")
         raise
+
 
 def upload_file_to_minio(client, bucket_name, file_name):
     try:
@@ -73,6 +76,7 @@ def upload_file_to_minio(client, bucket_name, file_name):
     except S3Error as e:
         logging.error(f"Error uploading file to MinIO: {e}")
         raise
+
 
 def main():
     try:
@@ -86,6 +90,7 @@ def main():
         if os.path.exists(TEST_FILE_NAME):
             os.remove(TEST_FILE_NAME)
             logging.info(f"Temporary file '{TEST_FILE_NAME}' deleted.")
+
 
 if __name__ == "__main__":
     try:
