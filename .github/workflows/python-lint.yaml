@@ -32,11 +32,5 @@ jobs:
       - name: Install dependencies with Poetry
         run: poetry install --with dev
 
-      - name: Run Black
-        run: poetry run black --config pyproject.toml .
-
-      - name: Run Flake8
-        run: poetry run flake8 --config pyproject.toml .
-
-      - name: Run isort
-        run: poetry run isort . --settings-path pyproject.toml
+      - name: Run pre-commit
+        run: poetry run pre-commit run --all-files
