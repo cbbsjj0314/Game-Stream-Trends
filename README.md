@@ -17,22 +17,30 @@ cd Game-Stream-Trends
 Poetry가 설치되지 않았다면 아래 명령어로 설치
 #### ▶ Mac
 ```sh
+# 1. Poetry 설치
 curl -sSL https://install.python-poetry.org | python3 -
+
+# 2. 환경 변수 추가 (영구 적용)
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
+
+# 3. 프로젝트 폴더로 가서 Poetry에 python3.11 적용
+cd /path/to/your/project
+poetry env use python3.11
 ```
 
 #### ▶ Window
-```sh
+```powershell
 # 1. Poetry 설치
 curl.exe -sSL https://install.python-poetry.org | python -
 
 # 2. 환경 변수 추가 (영구 적용)
-# {your_username} 부분 변경 필요
-[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\{your_username}\AppData\Roaming\Python\Scripts", "User")
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$env:USERPROFILE\AppData\Roaming\Python\Scripts", "User")
 
 # 3. 환경 변수 새로고침 (현재 세션에서 즉시 적용)
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "User") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "Machine")
 
-# 4. Poetry에 python3.11 적용
+# 4. 프로젝트 폴더로 가서 Poetry에 python3.11 적용
+cd "C:\path\to\your\project"
 poetry env use python3.11
 ```
 
