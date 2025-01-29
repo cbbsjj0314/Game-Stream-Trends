@@ -31,16 +31,16 @@
 
 `.env` 파일에서 설정한 주요 변수는 다음과 같음
 
-| 변수명                 | 설명                                   
+| 변수명                 | 설명
 |------------------------|----------------------------------------
-| `MINIO_SERVER_IP`      | MinIO 서버 IP (예: localhost)                 
-| `MINIO_ROOT_USER`      | MinIO 관리자 계정 이름                 
-| `MINIO_ROOT_PASSWORD`  | MinIO 관리자 계정 비밀번호             
+| `MINIO_SERVER_IP`      | MinIO 서버 IP (예: localhost)
+| `MINIO_ROOT_USER`      | MinIO 관리자 계정 이름
+| `MINIO_ROOT_PASSWORD`  | MinIO 관리자 계정 비밀번호
 | `MINIO_ACCESS_KEY`      | MinIO 액세스 키
-| `MINIO_SECRET_KEY`  | MinIO 시크릿 키             
-| `MINIO_API_PORT`       | MinIO API 접근 포트                    
-| `MINIO_CONSOLE_PORT`   | MinIO 콘솔 접근 포트                
-| `MINIO_NODES`          | MinIO 클러스터 노드 설정               
+| `MINIO_SECRET_KEY`  | MinIO 시크릿 키
+| `MINIO_API_PORT`       | MinIO API 접근 포트
+| `MINIO_CONSOLE_PORT`   | MinIO 콘솔 접근 포트
+| `MINIO_NODES`          | MinIO 클러스터 노드 설정
 | `MINIO1_DATA1_PATH`    | MinIO1의 첫 번째 데이터 디렉토리 경로
 
 ### 2️⃣ 컨테이너 실행
@@ -66,7 +66,7 @@ docker compose up --build -d
   - **클라이언트 머신**
     - `.env`의 `MINIO_SERVER_IP`와 'MINIO_CONSOLE_PORT'로 `http://${MINIO_SERVER_IP}:${MINIO_CONSOLE_PORT}` 접속
     - `.env`의 `MINIO_ROOT_USER`와 `MINIO_ROOT_PASSWORD`로 로그인
-  
+
 ### 2️⃣ 테스트 스크립트 실행
 1. **호스트 머신**
   - `dev/minio/test-scripts/`의 `host_minio_test.py` 실행
@@ -74,6 +74,3 @@ docker compose up --build -d
 2. **클라이언트 머신**
   - `dev/minio/test-scripts/`의 `client_minio_test.py` 실행
   - MinIO에 `client-test-bucket` 버킷 및 테스트 파일 생성돼 있으면 성공
-
-
-    
