@@ -4,19 +4,19 @@
 
 ## 구성 파일 및 설명
 
-- `docker-compose.yaml`
-  - MinIO 서비스
-    - minio1 ~ 4로 총 4개의 MinIO 노드가 클러스터를 구성
-    - 각각의 데이터 디렉토리는 로컬 호스트 경로를 컨테이너 내부 경로로 마운트
-  - NGINX
-    - MinIO API 및 콘솔에 대한 리버스 프록시 역할 수행
-    - `nginx.conf.template`에서 환경 변수로 포트 및 서버를 동적으로 설정
+### ⚙️ docker-compose.yaml
+#### MinIO:
+  - minio1 ~ 4로 총 4개의 MinIO 노드가 클러스터를 구성
+  - 각각의 데이터 디렉토리는 로컬 호스트 경로를 컨테이너 내부 경로로 마운트
+#### NGINX:
+  - MinIO API 및 콘솔에 대한 리버스 프록시 역할 수행
+  - `nginx.conf.template`에서 환경 변수로 포트 및 서버를 동적으로 설정
 
-- `nginx.conf.template`
+### ⚙️ nginx.conf.template
   - API 및 콘솔 트래픽을 각 MinIO 노드로 분산시킴
   - `envsubst` 명령을 통해 `.env` 파일 변수 설정
 
-- `.env`
+### ⚙️ .env
   - 환경 변수 파일
 
 ---
