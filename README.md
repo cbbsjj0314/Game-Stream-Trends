@@ -1,3 +1,5 @@
+![Python](https://img.shields.io/badge/Python-3.11.8-blue?logo=python&logoColor=white)
+
 # 🚀 Game-Stream-Trends 프로젝트 설정 가이드
 
 이 문서는 Poetry를 사용하여 프로젝트를 설정하는 방법을 안내합니다.
@@ -20,7 +22,18 @@ curl -sSL https://install.python-poetry.org | python3 -
 
 #### ▶ Window
 ```sh
+# 1. Poetry 설치
 curl.exe -sSL https://install.python-poetry.org | python -
+
+# 2. 환경 변수 추가 (영구 적용)
+# {your_username} 부분 변경 필요
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\{your_username}\AppData\Roaming\Python\Scripts", "User")
+
+# 3. 환경 변수 새로고침 (현재 세션에서 즉시 적용)
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path", "User") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+
+# 4. Poetry에 python3.11 적용
+poetry env use python3.11
 ```
 
 ## 3️⃣ 가상 환경 생성 및 의존성 설치
