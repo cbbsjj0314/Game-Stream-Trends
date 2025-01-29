@@ -7,7 +7,10 @@ name = "Game-Stream-Trends"
 version = "0.1.0"
 description = "Combine game data and streaming platform data to track the latest trends in gaming and streaming."
 packages = [
-    { include = "test-scripts", from = "dev/minio" }
+    { include = "lib", from = "dev" },
+    { include = "scripts", from = "dev/airflow" },
+    { include = "dags", from = "dev/airflow" },
+    { include = "tests" }
 ]
 
 [tool.poetry.dependencies]
