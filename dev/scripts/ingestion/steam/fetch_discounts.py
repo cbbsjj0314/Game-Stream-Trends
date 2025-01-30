@@ -12,6 +12,9 @@ os.makedirs(LOG_DIR, exist_ok=True)
 timestamp = datetime.now(timezone.utc).strftime('%Y-%m-%d_%H-%M-%S')
 log_file = os.path.join(LOG_DIR, f"fetch_discounts_{timestamp}.log")
 
+SAMPLE_DATA_PATH = "dev/data/sample/app_ids.json"
+OUTPUT_DIR = "dev/data/output/"
+
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -51,11 +54,21 @@ def load_app_ids(file_path):
     return [entry["appid"] for entry in appids_data if "appid" in entry]
 
 
-def save_discount_data(output_dir, idx, data):
-    os.makedirs(output_dir, exist_ok=True)
+def save_discount_data(output_dir, data_type, idx, data):
+    now = datetime.now(timezone.utc)
+    year = now.strftime("%Y")
+    month = now.strftime("%m")
+    day = now.strftime("%d")
+    timestamp = now.strftime("%Y-%m-%d_%H-%M-%S")
 
-    timestamp = datetime.utcnow().strftime('%Y-%m-%d_%H-%M-%S')
-    output_file = f"{output_dir}/combined_{DATA_TYPE}_{idx}_{timestamp}.json"
+    save_path = os.path.join(
+        output_dir, data_type, f"year={year}", f"month={month}", f"day={day}"
+    )
+    os.makedirs(save_path, exist_ok=True)
+
+    output_file = os.path.join(
+        save_path, f"combined_{data_type}_{idx}_{timestamp}.json"
+    )
 
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
@@ -76,10 +89,10 @@ def process_discounts(file_path, output_dir):
         combined_discounts = get_discount_data(chunk)
 
         if combined_discounts:
-            save_discount_data(output_dir, idx, combined_discounts)
+            save_discount_data(output_dir, DATA_TYPE, idx, combined_discounts)
         else:
             logging.error(f"Failed to fetch data for chunk {idx}.")
 
 
 if __name__ == "__main__":
-    process_discounts("dev/data/sample/app_ids.json", "dev/data/output/")
+    process_discounts(SAMPLE_DATA_PATH, OUTPUT_DIR)
