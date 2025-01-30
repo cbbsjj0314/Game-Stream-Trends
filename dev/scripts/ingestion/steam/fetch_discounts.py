@@ -2,13 +2,20 @@ import logging
 import json
 import os
 import requests
-from datetime import datetime
+from datetime import datetime, timezone
 
 DATA_TYPE = "discounts"
+
+LOG_DIR = "dev/logs/steam/"
+os.makedirs(LOG_DIR, exist_ok=True)
+
+timestamp = datetime.now(timezone.utc).strftime('%Y-%m-%d_%H-%M-%S')
+log_file = os.path.join(LOG_DIR, f"fetch_discounts_{timestamp}.log")
 
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.FileHandler(log_file, encoding="utf-8"), logging.StreamHandler()],
 )
 
 
