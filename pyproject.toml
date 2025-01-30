@@ -9,7 +9,7 @@ description = "Combine game data and streaming platform data to track the latest
 packages = [
     { include = "lib", from = "dev" },
     { include = "scripts", from = "dev/minio" },
-    { include = "steam", from = "dev/scripts/ingestion" },
+    { include = "scripts", from = "dev" },
 ]
 
 [tool.poetry.dependencies]
