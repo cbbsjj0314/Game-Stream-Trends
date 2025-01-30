@@ -11,4 +11,4 @@ __pycache__/
 
 .python-version
 
-results/
+dev/data/output/
