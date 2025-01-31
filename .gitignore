@@ -10,6 +10,5 @@ __pycache__/
 *.log
 logs/
 
-.python-version
-
+# 로컬 저장 위치
 dev/data/output/
