@@ -17,11 +17,11 @@ x-airflow-common:
     AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: "300"
 
   volumes:
-    - ./dags:/usr/local/airflow/dags
-    - ./scripts:/usr/local/airflow/scripts
-    - ./logs:/usr/local/airflow/logs
-    - ./plugins:/usr/local/airflow/plugins
-    - ./config:/usr/local/airflow/config
+    - ./dags:/opt/airflow/dags
+    - ./scripts:/opt/airflow/scripts
+    - ./logs:/opt/airflow/logs
+    - ./plugins:/opt/airflow/plugins
+    - ./config:/opt/airflow/config
   depends_on:
     &airflow-common-depends-on
     redis:
