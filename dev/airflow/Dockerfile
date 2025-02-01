@@ -9,14 +9,14 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     gcc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY pyproject.toml /usr/local/airflow/pyproject.toml
-COPY poetry.lock /usr/local/airflow/poetry.lock
+COPY pyproject.toml /opt/airflow/pyproject.toml
+COPY poetry.lock /opt/airflow/poetry.lock
 
-RUN chown -R airflow /usr/local/airflow
+RUN chown -R airflow /opt/airflow
 
 USER airflow
 
-WORKDIR /usr/local/airflow
+WORKDIR /opt/airflow
 
 RUN pip install --no-cache-dir poetry && \
     poetry config virtualenvs.create false && \
