@@ -7,7 +7,7 @@ from airflow.models import Variable
 
 
 class Config:
-    MINIO_ENDPOINT = "http://172.30.1.2:9000"
+    MINIO_ENDPOINT = Variable.get("MINIO_ENDPOINT")
     MINIO_ACCESS_KEY = Variable.get("MINIO_ACCESS_KEY")
     MINIO_SECRET_KEY = Variable.get("MINIO_SECRET_KEY")
     MINIO_BUCKET_NAME = Variable.get("GST_BUCKET_NAME")
