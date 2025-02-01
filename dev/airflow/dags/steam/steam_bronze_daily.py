@@ -3,18 +3,18 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-sys.path.insert(0, "/opt/airflow/scripts/steam")
+sys.path.insert(0, "/opt/airflow/external/steam/bronze")
 
 from fetch_details import main as fetch_details_main
 from fetch_news import main as fetch_news_main
 from fetch_discounts import main as fetch_discounts_main
-from fetch_reviewmetas import main as fetch_reviewmetas_main
+from fetch_review_metas import main as fetch_review_metas_main
 
 task_info = [
     ('fetch_details', fetch_details_main),
     ('fetch_news', fetch_news_main),
     ('fetch_discounts', fetch_discounts_main),
-    ('fetch_reviewmetas', fetch_reviewmetas_main),
+    ('fetch_review_metas', fetch_review_metas_main),
 ]
 
 default_args = {
