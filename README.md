@@ -24,10 +24,6 @@ curl -sSL https://install.python-poetry.org | python3 -
 
 # 2. 환경 변수 추가 (영구 적용)
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
-
-# 3. 프로젝트 폴더로 가서 Poetry에 python3.11 적용
-cd /path/to/your/project
-poetry env use python3.11
 ```
 
 #### ▶ Window
@@ -40,16 +36,25 @@ curl.exe -sSL https://install.python-poetry.org | python -
 
 # 3. 환경 변수 새로고침 (현재 세션에서 즉시 적용)
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "User") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "Machine")
-
-# 4. 프로젝트 폴더로 가서 Poetry에 python3.11 적용
-cd "C:\path\to\your\project"
-poetry env use python3.11
 ```
 
 ## 3️⃣ 가상 환경 생성 및 의존성 설치
-다음 명령어를 실행하여 프로젝트의 가상 환경을 만들고 필요한 패키지를 설치
+▶ Mac
 ```sh
+# 1. 프로젝트 폴더로 이동
+cd /path/to/your/project
+
+# 2. Python 버전 지정 및 가상 환경 생성
+poetry env use python3.11
+
+# 3. 의존성 설치 (개발 의존성 포함)
 poetry install --with dev
+
+# 4. 가상 환경 활성화
+source $(poetry env info --path)/bin/activate
+
+# 5. 가상 환경 활성화 여부 확인
+echo $VIRTUAL_ENV
 ```
 
 ## 4️⃣ Airflow 및 MinIO 실행
