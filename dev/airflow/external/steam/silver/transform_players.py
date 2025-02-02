@@ -34,7 +34,6 @@ minio_client = boto3.client(
 
 
 def minio_path_exists(bucket, prefix):
-    """Check if the given MinIO path exists."""
     try:
         response = minio_client.list_objects_v2(Bucket=bucket, Prefix=prefix)
         exists = "Contents" in response
