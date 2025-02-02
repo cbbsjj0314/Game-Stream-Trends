@@ -18,7 +18,7 @@ x-airflow-common:
 
   volumes:
     - ./dags:/opt/airflow/dags
-    - ./scripts:/opt/airflow/scripts
+    - ./external:/opt/airflow/external
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
     - ./config:/opt/airflow/config

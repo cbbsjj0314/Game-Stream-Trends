@@ -1,6 +1,6 @@
 import sys
 
-sys.path.insert(0, "/opt/airflow/scripts/steam")
+sys.path.insert(0, "/opt/airflow/external/steam/bronze")
 
 from datetime import datetime, timedelta
 from airflow import DAG

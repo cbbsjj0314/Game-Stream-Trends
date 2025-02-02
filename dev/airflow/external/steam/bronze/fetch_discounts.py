@@ -1,5 +1,6 @@
 # 할인 정보를 가져오는데 통화 기준은 한국임
-# 다른 나라 통화로도 수정 가능
+# cc 매개변수를 추가하여 다른 나라 통화로도 수정 가능
+# 예: cc=en, tw, ...
 
 import logging
 import requests

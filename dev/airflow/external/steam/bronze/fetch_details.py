@@ -1,11 +1,8 @@
 import time
 import logging
 import requests
-import pytz
-from datetime import datetime
+from datetime import datetime, timezone
 from steam_fetch_config import Config
-
-KST = pytz.timezone('Asia/Seoul')
 
 DATA_TYPE = "details"
 Config.setup_minio_logging(bucket_name=Config.MINIO_BUCKET_NAME, data_type=DATA_TYPE)
@@ -46,8 +43,8 @@ def main():
         combined_details = collect_all_details(appids)
 
         if combined_details:
-            date_str = datetime.now(KST).strftime('%Y-%m-%d')
-            timestamp = datetime.now(KST).strftime('%Y-%m-%d_%H-%M-%S')
+            date_str = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+            timestamp = datetime.now(timezone.utc).strftime('%Y-%m-%d_%H-%M-%S')
             filename = f'data/raw/steam/{DATA_TYPE}/{date_str}/combined_{DATA_TYPE}_{timestamp}.json'
             Config.upload_to_minio(combined_details, filename)
             logging.info("Combined details data uploaded successfully.")
