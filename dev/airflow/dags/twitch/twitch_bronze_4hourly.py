@@ -1,9 +1,10 @@
 import sys
+
+sys.path.insert(0, "/opt/airflow/external/twitch/bronze")
+
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
-
-sys.path.insert(0, "/opt/airflow/external/twitch/bronze")
 
 from fetch_streams import main as fetch_streams_main
 from fetch_top_categories import main as fetch_top_categories_main

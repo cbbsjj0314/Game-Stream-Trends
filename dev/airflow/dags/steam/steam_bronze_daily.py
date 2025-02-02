@@ -1,9 +1,10 @@
 import sys
+
+sys.path.insert(0, "/opt/airflow/external/steam/bronze")
+
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-
-sys.path.insert(0, "/opt/airflow/external/steam/bronze")
 
 from fetch_details import main as fetch_details_main
 from fetch_news import main as fetch_news_main
