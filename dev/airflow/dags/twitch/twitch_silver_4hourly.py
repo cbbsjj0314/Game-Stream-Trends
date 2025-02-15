@@ -31,7 +31,7 @@ dag = DAG(
     'twitch_silver_4hourly',
     default_args=default_args,
     description='twitch_bronze_4hourly DAG가 수집한 원시 JSON 데이터를 클렌징 및 Parquet 포맷으로 변환하여 MinIO 버킷에 저장',
-    schedule_interval="0 15 * * *",
+    schedule_interval="0 15,19,23,3,7,11 * * *",  # KST 00시, 04시, 08시, 12시, 16시, 20시
     catchup=False,
     concurrency=4,
     max_active_runs=4,
